@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax请求本地json文件</title>
+    <script src="js/jquery-3.0.0.js"></script>
+</head>
+<body style="color:#f00">
+    <div id="main1">
+		<ul id="main">
+			 
+		</ul>
+	</div> 
+	<div id="main0"></div>
+<script>
+    $(function(){
+        $.ajax({
+            type:"GET",     //请求方式
+            url:"https://api.github.com/search/repositories?q=javascript&sort=stars",    //文件位置
+//            url:"test1.json",
+            dataType:"json",    //返回数据格式为json
+            //请求成功后要执行的函数，拼接html
+            success: function(dat){
+			console.log(dat);
+                //获取test1.json
+//                var str = "<ul>";
+//                $.each(dat.list[0].manage,function(i,n){
+//                    str += "<li>" + n.tool + "</li>";
+//                });
+//                str +="</ul>";
+
+                //获取test.json
+//                var str = "";
+//                $.each(dat,function(zhi,jiaobiao){
+//                    str+="<p>"+jiaobiao.name+"</p>";
+//                });
+//				console.log(dat);
+				var arr = dat.items;
+//				console.log(arr);
+				var length = arr.length;
+				console.log(length);
+				//获取网上数据
+				
+				
+//				$.each(dat,function(i,n){
+			 
+				var i;
+				for(i in arr){ 
+				var str = "";
+//					console.log(arr[i].name);
+					
+					str +=arr[i].name+"<br />";
+					console.log(str);
+					 $("#main0").append(str); 				 
+				}
+				
+//				});
+                
+/*				var ary=dat.items;
+				var ary_length=ary.length;
+				for(var k=0;k<ary_length;k++){
+					var li=$("<li></li>");
+					var node=ary[k].full_name;
+					li.append(node);
+					$("#main").append(li);
+				}
+*/				
+            }
+        });
+    });
+</script>
+</body>
+</html>
